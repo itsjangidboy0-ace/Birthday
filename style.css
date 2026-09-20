@@ -1,0 +1,588 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #09090c;
+    color: #f5f3ef;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   COMMON
+========================= */
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #8e8d94;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   SETUP SCREEN
+========================= */
+
+.setup-screen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px 20px;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(150, 110, 255, 0.10),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 120, 190, 0.08),
+            transparent 35%
+        ),
+        #09090c;
+}
+
+.setup-content {
+    width: 100%;
+    max-width: 560px;
+    text-align: center;
+}
+
+.setup-content h1 {
+    margin-top: 24px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(40px, 7vw, 68px);
+    font-weight: normal;
+    line-height: 1.08;
+
+    letter-spacing: -2px;
+}
+
+.intro-text {
+    max-width: 430px;
+    margin: 25px auto 45px;
+
+    color: #96959d;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #aaa9b0;
+    font-size: 12px;
+}
+
+.input-group label span {
+    color: #66656c;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.045);
+    color: #f5f3ef;
+
+    outline: none;
+
+    padding: 15px 16px;
+
+    transition: 0.3s ease;
+}
+
+.input-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: #5f5e65;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: rgba(220, 205, 255, 0.45);
+
+    background: rgba(255, 255, 255, 0.065);
+
+    box-shadow:
+        0 0 0 4px rgba(150, 110, 255, 0.06);
+}
+
+
+/* =========================
+   CREATE BUTTON
+========================= */
+
+#createButton {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 16px 25px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: #f5f3ef;
+    color: #111116;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+#createButton span {
+    margin-left: 8px;
+}
+
+#createButton:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 35px rgba(255, 255, 255, 0.10);
+}
+
+.privacy-note {
+    margin-top: 18px;
+
+    color: #55545c;
+    font-size: 11px;
+}
+
+
+/* =========================
+   SURPRISE SCREEN
+========================= */
+
+.surprise-screen {
+    display: none;
+
+    position: relative;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(150, 110, 255, 0.10),
+            transparent 30%
+        ),
+        #09090c;
+}
+
+
+/* =========================
+   BACKGROUND GLOWS
+========================= */
+
+.background-glow {
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    filter: blur(130px);
+
+    pointer-events: none;
+}
+
+.glow-one {
+    top: -180px;
+    left: -120px;
+
+    background: rgba(140, 100, 255, 0.12);
+}
+
+.glow-two {
+    bottom: -180px;
+    right: -120px;
+
+    background: rgba(255, 100, 180, 0.08);
+}
+
+
+/* =========================
+   OPENING
+========================= */
+
+.opening-section {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.opening-section h1 {
+    margin-top: 25px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(55px, 10vw, 105px);
+
+    font-weight: normal;
+
+    line-height: 1;
+
+    letter-spacing: -4px;
+}
+
+.opening-section h1 span {
+    color: #d7c8ff;
+}
+
+.opening-text {
+    margin-top: 28px;
+
+    color: #89878f;
+
+    font-size: 14px;
+}
+
+#openButton {
+    margin-top: 40px;
+
+    padding: 15px 27px;
+
+    border: 1px solid rgba(255, 255, 255, 0.17);
+
+    border-radius: 50px;
+
+    background: rgba(255, 255, 255, 0.055);
+
+    color: #f5f3ef;
+
+    font-size: 13px;
+
+    transition: 0.3s ease;
+}
+
+#openButton span {
+    margin-left: 10px;
+}
+
+#openButton:hover {
+    background: #f5f3ef;
+    color: #111116;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   BIRTHDAY SECTION
+========================= */
+
+.birthday-section {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+}
+
+.birthday-section h2 {
+    max-width: 850px;
+
+    margin: 25px 0 45px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(42px, 8vw, 85px);
+
+    font-weight: normal;
+
+    line-height: 1.05;
+
+    letter-spacing: -3px;
+}
+
+.birthday-section h2 span {
+    color: #d7c8ff;
+}
+
+
+/* =========================
+   MESSAGE CARD
+========================= */
+
+.message-card {
+    width: 100%;
+    max-width: 650px;
+
+    padding: 40px;
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.25);
+}
+
+#displayMessage {
+    color: #c2c0c7;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    white-space: pre-wrap;
+}
+
+.sender {
+    margin-top: 28px;
+
+    color: #88868f;
+
+    font-size: 12px;
+}
+
+.sender span:last-child {
+    margin-left: 7px;
+}
+
+
+/* =========================
+   CONTINUE BUTTON
+========================= */
+
+.continue-button {
+    margin-top: 45px;
+
+    padding: 13px 23px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: #aaa8b0;
+
+    font-size: 12px;
+
+    transition: 0.3s ease;
+}
+
+.continue-button span {
+    margin-left: 8px;
+}
+
+.continue-button:hover {
+    color: white;
+
+    border-color: rgba(255, 255, 255, 0.3);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   FINAL SECTION
+========================= */
+
+.final-section {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 60px 20px;
+}
+
+.final-section h2 {
+    max-width: 850px;
+
+    margin: 28px 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(45px, 8vw, 90px);
+
+    font-weight: normal;
+
+    line-height: 1.04;
+
+    letter-spacing: -3px;
+}
+
+.final-text {
+    color: #89878f;
+
+    font-size: 14px;
+}
+
+.final-line {
+    width: 45px;
+    height: 1px;
+
+    background: #55535c;
+
+    margin: 35px 0;
+}
+
+.made-with {
+    color: #66646d;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+.made-with span {
+    color: #aaa0c5;
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-button {
+    position: fixed;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 10px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 50px;
+
+    background: rgba(10, 10, 13, 0.75);
+
+    backdrop-filter: blur(10px);
+
+    color: #77757e;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    z-index: 20;
+}
+
+.back-button:hover {
+    color: white;
+
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .setup-screen {
+        padding: 40px 18px;
+    }
+
+    .setup-content h1 {
+        font-size: 42px;
+        letter-spacing: -1.5px;
+    }
+
+    .opening-section h1 {
+        font-size: 58px;
+        letter-spacing: -2px;
+    }
+
+    .birthday-section h2 {
+        font-size: 45px;
+        letter-spacing: -1.5px;
+    }
+
+    .final-section h2 {
+        font-size: 48px;
+        letter-spacing: -1.5px;
+    }
+
+    .message-card {
+        padding: 28px 22px;
+    }
+
+    #displayMessage {
+        font-size: 17px;
+    }
+}
