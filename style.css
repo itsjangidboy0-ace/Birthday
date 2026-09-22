@@ -13,13 +13,32 @@ html {
 }
 
 body {
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(145, 90, 255, 0.12), transparent 35%),
-        radial-gradient(circle at 80% 70%, rgba(255, 90, 180, 0.10), transparent 35%),
-        #09090f;
-    color: #fff;
+    background: #09090c;
+    color: #f5f3ef;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   COMMON
+========================= */
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #8e8d94;
+    text-transform: uppercase;
 }
 
 
@@ -30,240 +49,151 @@ body {
 .setup-screen {
     min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    align-items: center;
+
+    padding: 60px 20px;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(150, 110, 255, 0.10),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 120, 190, 0.08),
+            transparent 35%
+        ),
+        #09090c;
 }
 
 .setup-content {
     width: 100%;
-    max-width: 590px;
-    padding: 48px;
-
-    background: rgba(255, 255, 255, 0.045);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 28px;
-
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-
-    box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.45),
-        0 0 80px rgba(130, 80, 255, 0.08);
-
-    animation: appear 0.7s ease;
+    max-width: 560px;
+    text-align: center;
 }
 
+.setup-content h1 {
+    margin-top: 24px;
 
-/* =========================
-   TEXT
-========================= */
-
-.eyebrow {
-    margin-bottom: 18px;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #aaa6b8;
-}
-
-h1 {
-    margin-bottom: 18px;
-    font-size: clamp(38px, 7vw, 58px);
-    line-height: 1.02;
-    letter-spacing: -2px;
-    font-weight: 600;
-}
-
-h2 {
-    margin-bottom: 20px;
-    font-size: clamp(32px, 6vw, 48px);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(40px, 7vw, 68px);
+    font-weight: normal;
     line-height: 1.08;
-    letter-spacing: -1.5px;
+
+    letter-spacing: -2px;
 }
 
-.intro-text,
-.opening-text,
-.final-text {
-    margin-bottom: 30px;
-    color: #aaa8b5;
-    line-height: 1.7;
-    font-size: 15px;
+.intro-text {
+    max-width: 430px;
+    margin: 25px auto 45px;
+
+    color: #96959d;
+    font-size: 14px;
+    line-height: 1.8;
 }
 
 
 /* =========================
-   INPUT GROUPS
+   INPUTS
 ========================= */
 
 .input-group {
-    margin-bottom: 21px;
+    text-align: left;
+    margin-bottom: 20px;
 }
 
 .input-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #c8c5d0;
-    font-size: 13px;
-    letter-spacing: 0.3px;
+
+    margin-bottom: 9px;
+
+    color: #aaa9b0;
+    font-size: 12px;
 }
 
-input,
-textarea {
+.input-group label span {
+    color: #66656c;
+}
+
+.input-group input,
+.input-group textarea {
     width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
 
     background: rgba(255, 255, 255, 0.045);
-    color: #fff;
+    color: #f5f3ef;
+
+    outline: none;
 
     padding: 15px 16px;
 
-    outline: none;
-    font-family: inherit;
-    font-size: 14px;
-
-    transition:
-        border 0.25s ease,
-        background 0.25s ease,
-        box-shadow 0.25s ease,
-        transform 0.25s ease;
+    transition: 0.3s ease;
 }
 
-textarea {
-    min-height: 125px;
+.input-group textarea {
+    min-height: 120px;
     resize: vertical;
 }
 
-input::placeholder,
-textarea::placeholder {
-    color: #686572;
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: #5f5e65;
 }
 
-input:focus,
-textarea:focus {
-    border-color: rgba(185, 150, 255, 0.65);
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: rgba(220, 205, 255, 0.45);
 
     background: rgba(255, 255, 255, 0.065);
 
     box-shadow:
-        0 0 0 4px rgba(145, 90, 255, 0.08),
-        0 0 25px rgba(145, 90, 255, 0.08);
+        0 0 0 4px rgba(150, 110, 255, 0.06);
 }
 
 
 /* =========================
-   MAIN BUTTON
+   CREATE BUTTON
 ========================= */
-
-button {
-    border: 1px solid rgba(255, 255, 255, 0.13);
-    border-radius: 14px;
-
-    padding: 14px 22px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(155, 105, 255, 0.95),
-            rgba(110, 75, 205, 0.95)
-        );
-
-    color: #fff;
-
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 10px 30px rgba(100, 60, 220, 0.22);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        filter 0.2s ease;
-}
-
-button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 14px 35px rgba(100, 60, 220, 0.35);
-
-    filter: brightness(1.08);
-}
-
-button:active {
-    transform: scale(0.97);
-}
 
 #createButton {
     width: 100%;
-    margin-top: 4px;
+
+    margin-top: 15px;
+
+    padding: 16px 25px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: #f5f3ef;
+    color: #111116;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: 0.3s ease;
 }
 
 #createButton span {
     margin-left: 8px;
 }
 
+#createButton:hover {
+    transform: translateY(-3px);
 
-/* =========================
-   GENERATED LINK
-========================= */
-
-.link-box {
-    display: none;
-
-    margin-top: 25px;
-    padding: 20px;
-
-    border-radius: 18px;
-
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
-    animation: slideUp 0.45s ease;
+    box-shadow:
+        0 12px 35px rgba(255, 255, 255, 0.10);
 }
 
-.link-title {
-    margin-bottom: 14px;
-    color: #e9e6f0;
-    font-size: 14px;
-}
+.privacy-note {
+    margin-top: 18px;
 
-.link-row {
-    display: flex;
-    gap: 9px;
-}
-
-#generatedLink {
-    min-width: 0;
-    margin: 0;
-    color: #bdb4d5;
-}
-
-#copyButton {
-    flex-shrink: 0;
-    margin-top: 0;
-
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-
-    box-shadow: none;
-}
-
-#copyButton:hover {
-    background: rgba(255, 255, 255, 0.13);
-}
-
-.link-info {
-    margin-top: 12px;
-    margin-bottom: 0;
-
-    color: #777382;
-    font-size: 12px;
+    color: #55545c;
+    font-size: 11px;
 }
 
 
@@ -276,73 +206,58 @@ button:active {
 
     position: relative;
 
-    width: 100%;
     min-height: 100vh;
 
     overflow: hidden;
 
     background:
         radial-gradient(
-            circle at 20% 20%,
-            rgba(145, 90, 255, 0.13),
-            transparent 32%
+            circle at 50% 20%,
+            rgba(150, 110, 255, 0.10),
+            transparent 30%
         ),
-        radial-gradient(
-            circle at 80% 70%,
-            rgba(255, 100, 190, 0.10),
-            transparent 35%
-        ),
-        #09090f;
+        #09090c;
 }
 
 
 /* =========================
-   GLOW
+   BACKGROUND GLOWS
 ========================= */
 
 .background-glow {
-    position: fixed;
+    position: absolute;
 
     width: 350px;
     height: 350px;
 
     border-radius: 50%;
 
-    filter: blur(100px);
+    filter: blur(130px);
 
     pointer-events: none;
-
-    opacity: 0.25;
 }
 
 .glow-one {
-    top: -120px;
-    left: -100px;
-    background: #8b5cf6;
+    top: -180px;
+    left: -120px;
+
+    background: rgba(140, 100, 255, 0.12);
 }
 
 .glow-two {
+    bottom: -180px;
     right: -120px;
-    bottom: -100px;
-    background: #ec4899;
+
+    background: rgba(255, 100, 180, 0.08);
 }
 
 
 /* =========================
-   SECTIONS
+   OPENING
 ========================= */
 
-.opening-section,
-.birthday-section,
-.final-section {
+.opening-section {
     min-height: 100vh;
-
-    width: 100%;
-    max-width: 850px;
-
-    margin: auto;
-
-    padding: 80px 25px;
 
     display: flex;
     flex-direction: column;
@@ -352,39 +267,100 @@ button:active {
 
     text-align: center;
 
-    position: relative;
-    z-index: 2;
+    padding: 30px;
 }
 
 .opening-section h1 {
-    max-width: 700px;
+    margin-top: 25px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(55px, 10vw, 105px);
+
+    font-weight: normal;
+
+    line-height: 1;
+
+    letter-spacing: -4px;
 }
 
-.opening-section h1 span,
-.birthday-section h2 span,
-.final-section span {
-    color: #b99cff;
+.opening-section h1 span {
+    color: #d7c8ff;
+}
+
+.opening-text {
+    margin-top: 28px;
+
+    color: #89878f;
+
+    font-size: 14px;
+}
+
+#openButton {
+    margin-top: 40px;
+
+    padding: 15px 27px;
+
+    border: 1px solid rgba(255, 255, 255, 0.17);
+
+    border-radius: 50px;
+
+    background: rgba(255, 255, 255, 0.055);
+
+    color: #f5f3ef;
+
+    font-size: 13px;
+
+    transition: 0.3s ease;
+}
+
+#openButton span {
+    margin-left: 10px;
+}
+
+#openButton:hover {
+    background: #f5f3ef;
+    color: #111116;
+
+    transform: translateY(-3px);
 }
 
 
 /* =========================
-   OPEN BUTTON
+   BIRTHDAY SECTION
 ========================= */
 
-#openButton {
-    margin-top: 5px;
+.birthday-section {
+    min-height: 100vh;
 
-    background: rgba(255, 255, 255, 0.055);
+    display: flex;
+    flex-direction: column;
 
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    justify-content: center;
+    align-items: center;
 
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.25),
-        inset 0 1px rgba(255, 255, 255, 0.08);
+    text-align: center;
+
+    padding: 80px 20px;
 }
 
-#openButton:hover {
-    background: rgba(255, 255, 255, 0.10);
+.birthday-section h2 {
+    max-width: 850px;
+
+    margin: 25px 0 45px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(42px, 8vw, 85px);
+
+    font-weight: normal;
+
+    line-height: 1.05;
+
+    letter-spacing: -3px;
+}
+
+.birthday-section h2 span {
+    color: #d7c8ff;
 }
 
 
@@ -396,37 +372,42 @@ button:active {
     width: 100%;
     max-width: 650px;
 
-    padding: 35px;
+    padding: 40px;
 
-    margin: 15px 0 25px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
 
-    border-radius: 24px;
+    border-radius: 22px;
 
-    background: rgba(255, 255, 255, 0.045);
+    background: rgba(255, 255, 255, 0.035);
 
-    border: 1px solid rgba(255, 255, 255, 0.10);
-
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(20px);
 
     box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.28);
-
-    animation: cardFloat 5s ease-in-out infinite;
+        0 30px 80px rgba(0, 0, 0, 0.25);
 }
 
-.message-card p {
-    color: #dedbe5;
-    font-size: 17px;
-    line-height: 1.85;
+#displayMessage {
+    color: #c2c0c7;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    white-space: pre-wrap;
 }
 
 .sender {
-    margin-top: 25px;
+    margin-top: 28px;
 
-    color: #aaa5b5;
+    color: #88868f;
 
-    font-size: 14px;
+    font-size: 12px;
+}
+
+.sender span:last-child {
+    margin-left: 7px;
 }
 
 
@@ -435,83 +416,135 @@ button:active {
 ========================= */
 
 .continue-button {
+    margin-top: 45px;
+
+    padding: 13px 23px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 50px;
+
     background: transparent;
 
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #aaa8b0;
 
-    color: #ddd9e6;
+    font-size: 12px;
 
-    box-shadow: none;
+    transition: 0.3s ease;
+}
+
+.continue-button span {
+    margin-left: 8px;
 }
 
 .continue-button:hover {
-    background: rgba(255, 255, 255, 0.06);
+    color: white;
 
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.20);
+    border-color: rgba(255, 255, 255, 0.3);
+
+    transform: translateY(-2px);
 }
 
 
 /* =========================
-   FINAL
+   FINAL SECTION
 ========================= */
 
-.final-section h2 {
-    max-width: 700px;
+.final-section {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 60px 20px;
 }
 
-.final-line {
-    width: 70px;
-    height: 1px;
+.final-section h2 {
+    max-width: 850px;
 
     margin: 28px 0;
 
-    background: rgba(255, 255, 255, 0.30);
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(45px, 8vw, 90px);
+
+    font-weight: normal;
+
+    line-height: 1.04;
+
+    letter-spacing: -3px;
+}
+
+.final-text {
+    color: #89878f;
+
+    font-size: 14px;
+}
+
+.final-line {
+    width: 45px;
+    height: 1px;
+
+    background: #55535c;
+
+    margin: 35px 0;
 }
 
 .made-with {
-    color: #85818f;
-    font-size: 13px;
+    color: #66646d;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+.made-with span {
+    color: #aaa0c5;
 }
 
 
 /* =========================
-   ANIMATIONS
+   BACK BUTTON
 ========================= */
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
+.back-button {
+    position: fixed;
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 10px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 50px;
+
+    background: rgba(10, 10, 13, 0.75);
+
+    backdrop-filter: blur(10px);
+
+    color: #77757e;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    z-index: 20;
 }
 
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
+.back-button:hover {
+    color: white;
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes cardFloat {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-4px);
-    }
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 
@@ -522,41 +555,34 @@ button:active {
 @media (max-width: 600px) {
 
     .setup-screen {
-        padding: 20px 14px;
+        padding: 40px 18px;
     }
 
-    .setup-content {
-        padding: 30px 20px;
-        border-radius: 22px;
+    .setup-content h1 {
+        font-size: 42px;
+        letter-spacing: -1.5px;
     }
 
-    h1 {
-        font-size: 38px;
+    .opening-section h1 {
+        font-size: 58px;
+        letter-spacing: -2px;
     }
 
-    h2 {
-        font-size: 32px;
+    .birthday-section h2 {
+        font-size: 45px;
+        letter-spacing: -1.5px;
     }
 
-    .link-row {
-        flex-direction: column;
-    }
-
-    #copyButton {
-        width: 100%;
+    .final-section h2 {
+        font-size: 48px;
+        letter-spacing: -1.5px;
     }
 
     .message-card {
-        padding: 25px 20px;
+        padding: 28px 22px;
     }
 
-    .message-card p {
-        font-size: 16px;
-    }
-
-    .opening-section,
-    .birthday-section,
-    .final-section {
-        padding: 60px 20px;
+    #displayMessage {
+        font-size: 17px;
     }
 }
