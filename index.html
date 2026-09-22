@@ -1,145 +1,235 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>For You ✦</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+    <title>A Little Surprise ✨</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="ambient ambient-one"></div>
-    <div class="ambient ambient-two"></div>
+    <!-- =========================
+         SETUP SCREEN - A
+    ========================== -->
 
-    <div class="grain"></div>
+    <div class="setup-screen" id="setupScreen">
 
-    <main>
+        <div class="setup-content">
 
-        <!-- HERO -->
-        <section class="page hero active" id="hero">
-
-            <div class="top-label">
-                <span></span>
-                A LITTLE SOMETHING FOR YOU
-                <span></span>
-            </div>
-
-            <p class="eyebrow">Today is a little more special.</p>
+            <p class="eyebrow">MAKE A LITTLE SURPRISE</p>
 
             <h1>
-                Happy<br>
-                <em>Birthday.</em>
+                Make someone's<br>
+                day special.
             </h1>
 
-            <p class="hero-text">
-                I could have just said “Happy Birthday”...
-                <br>
-                but you deserve a little more than that.
+            <p class="intro-text">
+                Create a beautiful surprise and send the link
+                to someone you care about.
             </p>
 
-            <button class="primary-btn" id="openBtn">
-                <span>Open your surprise</span>
-                <b>→</b>
-            </button>
 
-            <div class="scroll-note">
-                <span class="line"></span>
-                <span>there's something waiting</span>
+            <!-- A - Sender -->
+
+            <div class="input-group">
+
+                <label for="senderName">
+                    A — Your name
+                </label>
+
+                <input
+                    type="text"
+                    id="senderName"
+                    placeholder="e.g. Takshil"
+                    maxlength="30"
+                >
+
             </div>
 
+
+            <!-- B - Receiver -->
+
+            <div class="input-group">
+
+                <label for="receiverName">
+                    B — Their name
+                </label>
+
+                <input
+                    type="text"
+                    id="receiverName"
+                    placeholder="e.g. Ananya"
+                    maxlength="30"
+                >
+
+            </div>
+
+
+            <!-- Message -->
+
+            <div class="input-group">
+
+                <label for="customMessage">
+                    Message for B
+                </label>
+
+                <textarea
+                    id="customMessage"
+                    placeholder="Write something special..."
+                    maxlength="500"
+                ></textarea>
+
+            </div>
+
+
+            <button id="createButton">
+                Create the surprise
+                <span>✦</span>
+            </button>
+
+
+            <!-- GENERATED LINK -->
+
+            <div class="link-box" id="linkBox">
+
+                <p class="link-title">
+                    Your surprise is ready ✨
+                </p>
+
+                <div class="link-row">
+
+                    <input
+                        type="text"
+                        id="generatedLink"
+                        readonly
+                    >
+
+                    <button id="copyButton">
+                        Copy
+                    </button>
+
+                </div>
+
+                <p class="link-info">
+                    Send this link to B.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         SURPRISE SCREEN - B
+    ========================== -->
+
+    <div class="surprise-screen" id="surpriseScreen">
+
+        <div class="background-glow glow-one"></div>
+        <div class="background-glow glow-two"></div>
+
+
+        <!-- OPENING -->
+
+        <section class="opening-section" id="openingSection">
+
+            <p class="eyebrow">
+                THIS IS FOR YOU
+            </p>
+
+            <h1>
+                Hey,
+                <span id="displayName">there</span>.
+            </h1>
+
+            <p class="opening-text">
+                Someone made a little something for you.
+            </p>
+
+            <button id="openButton">
+                Open your surprise
+                <span>→</span>
+            </button>
+
         </section>
+
 
 
         <!-- MESSAGE -->
-        <section class="page message" id="message">
 
-            <div class="number">01</div>
+        <section class="birthday-section" id="birthdaySection">
 
-            <p class="eyebrow">A few words</p>
+            <p class="eyebrow">
+                A LITTLE MESSAGE
+            </p>
 
             <h2>
-                Some people make<br>
-                ordinary days feel <em>better.</em>
+                For
+                <span id="birthdayName">you</span>.
             </h2>
 
-            <div class="message-copy">
+            <div class="message-card">
 
-                <p>
-                    And today, I just wanted to remind you
-                    how genuinely special you are.
+                <p id="displayMessage">
+                    Your message will appear here.
                 </p>
 
-                <p>
-                    I hope this year gives you countless
-                    reasons to smile, moments you'll remember,
-                    and everything you've been quietly wishing for.
-                </p>
+                <div class="sender" id="senderSection">
 
-                <p class="highlight">
-                    Stay exactly the way you are. ✦
-                </p>
+                    <span>—</span>
+                    <span id="displaySender"></span>
+
+                </div>
 
             </div>
 
-            <button class="text-btn" id="continueBtn">
-                <span>Keep going</span>
-                <b>→</b>
+
+            <button class="continue-button" id="continueButton">
+                There's one more thing
+                <span>↓</span>
             </button>
 
         </section>
+
 
 
         <!-- FINAL -->
-        <section class="page final" id="final">
 
-            <div class="number">02</div>
+        <section class="final-section" id="finalSection">
 
-            <div class="final-symbol">✦</div>
-
-            <p class="eyebrow">One last thing</p>
-
-            <h2>
-                Make this year<br>
-                <em>unforgettable.</em>
-            </h2>
-
-            <p class="final-copy">
-                Happy Birthday once again.
-                <br>
-                I hope today leaves you with a really big smile.
+            <p class="eyebrow">
+                ONE LAST THING
             </p>
 
-            <button class="primary-btn celebrate-btn" id="celebrateBtn">
-                <span>Make a wish</span>
-                <b>✦</b>
-            </button>
+            <h2>
+                You deserve a day
+                worth remembering.
+            </h2>
 
-            <div class="wish-message" id="wishMessage">
-                ✨ Your wish is on its way.
-            </div>
+            <p class="final-text">
+                Hope this little surprise made you smile.
+            </p>
+
+            <div class="final-line"></div>
+
+            <p class="made-with">
+                Made especially for
+                <span id="finalName">you</span>
+                ✦
+            </p>
 
         </section>
 
-    </main>
-
-    <div class="progress">
-        <span class="progress-dot active"></span>
-        <span class="progress-line"></span>
-        <span class="progress-dot"></span>
-        <span class="progress-line"></span>
-        <span class="progress-dot"></span>
     </div>
+
 
     <script src="script.js"></script>
 
 </body>
 </html>
-```
