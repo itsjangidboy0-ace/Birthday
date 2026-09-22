@@ -1,115 +1,145 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>A Little Birthday Surprise 🎂</title>
+    <title>For You ✦</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Background Effects -->
-    <div class="background">
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-    </div>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
 
-    <main class="container">
+    <div class="grain"></div>
 
-        <!-- Opening Section -->
-        <section class="screen active" id="welcomeScreen">
+    <main>
 
-            <p class="small-text">A little something made just for you ✨</p>
+        <!-- HERO -->
+        <section class="page hero active" id="hero">
 
-            <h1>Hey, Birthday Star! 🎂</h1>
+            <div class="top-label">
+                <span></span>
+                A LITTLE SOMETHING FOR YOU
+                <span></span>
+            </div>
 
-            <p class="intro">
-                Some birthdays deserve more than just a simple
-                <span>“Happy Birthday!”</span>
+            <p class="eyebrow">Today is a little more special.</p>
+
+            <h1>
+                Happy<br>
+                <em>Birthday.</em>
+            </h1>
+
+            <p class="hero-text">
+                I could have just said “Happy Birthday”...
+                <br>
+                but you deserve a little more than that.
             </p>
 
-            <p class="intro">
-                So... I made this little surprise for you. 💫
-            </p>
-
-            <button class="main-btn" id="startBtn">
-                Open Your Surprise ✨
+            <button class="primary-btn" id="openBtn">
+                <span>Open your surprise</span>
+                <b>→</b>
             </button>
+
+            <div class="scroll-note">
+                <span class="line"></span>
+                <span>there's something waiting</span>
+            </div>
 
         </section>
 
 
-        <!-- Birthday Message Section -->
-        <section class="screen" id="messageScreen">
+        <!-- MESSAGE -->
+        <section class="page message" id="message">
 
-            <p class="small-text">A special message for you 💌</p>
+            <div class="number">01</div>
 
-            <h2>Happy Birthday! 🎉</h2>
+            <p class="eyebrow">A few words</p>
 
-            <div class="message-card">
+            <h2>
+                Some people make<br>
+                ordinary days feel <em>better.</em>
+            </h2>
+
+            <div class="message-copy">
 
                 <p>
-                    I hope your birthday is filled with
-                    beautiful moments, genuine smiles,
-                    and people who make you feel special.
+                    And today, I just wanted to remind you
+                    how genuinely special you are.
                 </p>
 
                 <p>
-                    You deserve a day that's as wonderful
-                    and memorable as you are. ✨
+                    I hope this year gives you countless
+                    reasons to smile, moments you'll remember,
+                    and everything you've been quietly wishing for.
                 </p>
 
-                <p>
-                    Keep smiling, keep being yourself,
-                    and never forget how special you are.
+                <p class="highlight">
+                    Stay exactly the way you are. ✦
                 </p>
 
             </div>
 
-            <button class="main-btn" id="nextBtn">
-                There's More... 💫
+            <button class="text-btn" id="continueBtn">
+                <span>Keep going</span>
+                <b>→</b>
             </button>
 
         </section>
 
 
-        <!-- Final Surprise Section -->
-        <section class="screen" id="finalScreen">
+        <!-- FINAL -->
+        <section class="page final" id="final">
 
-            <div class="birthday-icon">🎂</div>
+            <div class="number">02</div>
 
-            <h2>One Last Thing...</h2>
+            <div class="final-symbol">✦</div>
 
-            <p class="final-message">
-                I hope this little surprise made you smile.
+            <p class="eyebrow">One last thing</p>
+
+            <h2>
+                Make this year<br>
+                <em>unforgettable.</em>
+            </h2>
+
+            <p class="final-copy">
+                Happy Birthday once again.
+                <br>
+                I hope today leaves you with a really big smile.
             </p>
 
-            <p class="final-message">
-                Once again, <strong>Happy Birthday! 🥳</strong>
-            </p>
-
-            <p class="final-message">
-                May this year bring you lots of happiness,
-                amazing memories, and countless reasons to smile. ✨
-            </p>
-
-            <button class="main-btn" id="celebrateBtn">
-                Celebrate! 🎉
+            <button class="primary-btn celebrate-btn" id="celebrateBtn">
+                <span>Make a wish</span>
+                <b>✦</b>
             </button>
 
-            <div id="celebrationArea"></div>
+            <div class="wish-message" id="wishMessage">
+                ✨ Your wish is on its way.
+            </div>
 
         </section>
 
     </main>
 
+    <div class="progress">
+        <span class="progress-dot active"></span>
+        <span class="progress-line"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-line"></span>
+        <span class="progress-dot"></span>
+    </div>
+
     <script src="script.js"></script>
 
 </body>
 </html>
+```
