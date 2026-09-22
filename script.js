@@ -1,179 +1,222 @@
-```javascript
-const pages = [
-    document.getElementById("hero"),
-    document.getElementById("message"),
-    document.getElementById("final")
-];
+// =========================
+// GET ELEMENTS
+// =========================
 
-const openBtn = document.getElementById("openBtn");
-const continueBtn = document.getElementById("continueBtn");
-const celebrateBtn = document.getElementById("celebrateBtn");
+const setupScreen = document.getElementById("setupScreen");
+const surpriseScreen = document.getElementById("surpriseScreen");
 
-const wishMessage = document.getElementById("wishMessage");
+const senderName = document.getElementById("senderName");
+const receiverName = document.getElementById("receiverName");
+const customMessage = document.getElementById("customMessage");
 
-const dots = document.querySelectorAll(".progress-dot");
+const createButton = document.getElementById("createButton");
 
-let currentPage = 0;
+const linkBox = document.getElementById("linkBox");
+const generatedLink = document.getElementById("generatedLink");
+const copyButton = document.getElementById("copyButton");
+
+const displayName = document.getElementById("displayName");
+const birthdayName = document.getElementById("birthdayName");
+const finalName = document.getElementById("finalName");
+
+const displayMessage = document.getElementById("displayMessage");
+
+const senderSection = document.getElementById("senderSection");
+const displaySender = document.getElementById("displaySender");
+
+const openButton = document.getElementById("openButton");
+const continueButton = document.getElementById("continueButton");
+
+const birthdaySection = document.getElementById("birthdaySection");
+const finalSection = document.getElementById("finalSection");
 
 
-// -------------------------
-// Change page
-// -------------------------
+// =========================
+// CHECK URL
+// =========================
 
-function goToPage(index) {
+const urlParams = new URLSearchParams(window.location.search);
 
-    if (index < 0 || index >= pages.length) return;
+const urlSender = urlParams.get("from");
+const urlReceiver = urlParams.get("to");
+const urlMessage = urlParams.get("message");
 
-    pages[currentPage].classList.remove("active");
 
-    currentPage = index;
+// =========================
+// IF B OPENS THE LINK
+// =========================
 
-    setTimeout(() => {
-        pages[currentPage].classList.add("active");
-    }, 120);
+if (urlReceiver) {
 
-    dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === currentPage);
+    const receiver = urlReceiver;
+    const sender = urlSender || "";
+    const message = urlMessage || "Wishing you a beautiful and memorable day! ✨";
+
+
+    displayName.textContent = receiver;
+    birthdayName.textContent = receiver;
+    finalName.textContent = receiver;
+
+    displayMessage.textContent = message;
+
+
+    if (sender) {
+
+        displaySender.textContent = sender;
+        senderSection.style.display = "block";
+
+    } else {
+
+        senderSection.style.display = "none";
+
+    }
+
+
+    // Hide setup
+
+    setupScreen.style.display = "none";
+
+    // Show surprise
+
+    surpriseScreen.style.display = "block";
+
+}
+
+
+// =========================
+// CREATE SURPRISE
+// =========================
+
+createButton.addEventListener("click", function () {
+
+    const sender = senderName.value.trim();
+    const receiver = receiverName.value.trim();
+    const message = customMessage.value.trim();
+
+
+    // Check names
+
+    if (sender === "") {
+
+        senderName.focus();
+
+        senderName.style.borderColor = "#d99";
+
+        return;
+    }
+
+
+    if (receiver === "") {
+
+        receiverName.focus();
+
+        receiverName.style.borderColor = "#d99";
+
+        return;
+    }
+
+
+    // Default message
+
+    const finalMessage =
+        message ||
+        "Wishing you a beautiful and memorable day! ✨";
+
+
+    // =========================
+    // CREATE URL
+    // =========================
+
+    const baseURL =
+        window.location.origin +
+        window.location.pathname;
+
+
+    const surpriseURL =
+        baseURL +
+        "?from=" + encodeURIComponent(sender) +
+        "&to=" + encodeURIComponent(receiver) +
+        "&message=" + encodeURIComponent(finalMessage);
+
+
+    // Put URL in box
+
+    generatedLink.value = surpriseURL;
+
+    linkBox.style.display = "block";
+
+
+    // Scroll to link
+
+    linkBox.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
     });
-}
+
+});
 
 
-// -------------------------
-// Button feedback
-// -------------------------
+// =========================
+// COPY LINK
+// =========================
 
-function buttonFeedback(button) {
+copyButton.addEventListener("click", async function () {
 
-    button.classList.remove("clicked");
+    try {
 
-    void button.offsetWidth;
-
-    button.classList.add("clicked");
-
-    createSparkles(button);
-}
-
-
-// -------------------------
-// Sparkles around button
-// -------------------------
-
-function createSparkles(button) {
-
-    const rect = button.getBoundingClientRect();
-
-    const symbols = ["✦", "·", "✧"];
-
-    for (let i = 0; i < 7; i++) {
-
-        const spark = document.createElement("span");
-
-        spark.className = "spark";
-
-        spark.textContent =
-            symbols[Math.floor(Math.random() * symbols.length)];
-
-        spark.style.left =
-            rect.left + rect.width / 2 + "px";
-
-        spark.style.top =
-            rect.top + rect.height / 2 + "px";
-
-        spark.style.setProperty(
-            "--x",
-            `${(Math.random() - .5) * 130}px`
+        await navigator.clipboard.writeText(
+            generatedLink.value
         );
 
-        spark.style.setProperty(
-            "--y",
-            `${(Math.random() - .5) * 90}px`
-        );
+        copyButton.textContent = "Copied ✓";
 
-        document.body.appendChild(spark);
+        setTimeout(function () {
 
-        setTimeout(() => {
-            spark.remove();
-        }, 900);
+            copyButton.textContent = "Copy";
+
+        }, 2000);
+
+    } catch (error) {
+
+        generatedLink.select();
+        document.execCommand("copy");
+
+        copyButton.textContent = "Copied ✓";
+
+        setTimeout(function () {
+
+            copyButton.textContent = "Copy";
+
+        }, 2000);
+
     }
-}
 
-
-// -------------------------
-// Open surprise
-// -------------------------
-
-openBtn.addEventListener("click", () => {
-
-    buttonFeedback(openBtn);
-
-    setTimeout(() => {
-        goToPage(1);
-    }, 280);
 });
 
 
-// -------------------------
-// Continue
-// -------------------------
+// =========================
+// OPEN SURPRISE
+// =========================
 
-continueBtn.addEventListener("click", () => {
+openButton.addEventListener("click", function () {
 
-    buttonFeedback(continueBtn);
+    birthdaySection.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 
-    setTimeout(() => {
-        goToPage(2);
-    }, 280);
 });
 
 
-// -------------------------
-// Make a wish
-// -------------------------
+// =========================
+// FINAL SURPRISE
+// =========================
 
-celebrateBtn.addEventListener("click", () => {
+continueButton.addEventListener("click", function () {
 
-    buttonFeedback(celebrateBtn);
+    finalSection.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 
-    wishMessage.classList.add("show");
-
-    celebrate();
 });
-
-
-// -------------------------
-// Final celebration
-// -------------------------
-
-function celebrate() {
-
-    const symbols = ["✦", "✧", "·", "✦"];
-
-    for (let i = 0; i < 24; i++) {
-
-        const item = document.createElement("span");
-
-        item.className = "celebration";
-
-        item.textContent =
-            symbols[Math.floor(Math.random() * symbols.length)];
-
-        item.style.left =
-            Math.random() * 100 + "vw";
-
-        item.style.top =
-            "-20px";
-
-        item.style.fontSize =
-            10 + Math.random() * 18 + "px";
-
-        item.style.animationDelay =
-            Math.random() * .8 + "s";
-
-        document.body.appendChild(item);
-
-        setTimeout(() => {
-            item.remove();
-        }, 3500);
-    }
-});
-```
