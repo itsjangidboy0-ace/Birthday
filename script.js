@@ -1,222 +1,171 @@
-// =========================
-// GET ELEMENTS
-// =========================
+```javascript
+// ================================
+// Birthday Surprise - JavaScript
+// ================================
 
-const setupScreen = document.getElementById("setupScreen");
-const surpriseScreen = document.getElementById("surpriseScreen");
+const welcomeScreen = document.getElementById("welcomeScreen");
+const messageScreen = document.getElementById("messageScreen");
+const finalScreen = document.getElementById("finalScreen");
 
-const senderName = document.getElementById("senderName");
-const receiverName = document.getElementById("receiverName");
-const customMessage = document.getElementById("customMessage");
+const startBtn = document.getElementById("startBtn");
+const nextBtn = document.getElementById("nextBtn");
+const celebrateBtn = document.getElementById("celebrateBtn");
 
-const createButton = document.getElementById("createButton");
-
-const linkBox = document.getElementById("linkBox");
-const generatedLink = document.getElementById("generatedLink");
-const copyButton = document.getElementById("copyButton");
-
-const displayName = document.getElementById("displayName");
-const birthdayName = document.getElementById("birthdayName");
-const finalName = document.getElementById("finalName");
-
-const displayMessage = document.getElementById("displayMessage");
-
-const senderSection = document.getElementById("senderSection");
-const displaySender = document.getElementById("displaySender");
-
-const openButton = document.getElementById("openButton");
-const continueButton = document.getElementById("continueButton");
-
-const birthdaySection = document.getElementById("birthdaySection");
-const finalSection = document.getElementById("finalSection");
+const celebrationArea = document.getElementById("celebrationArea");
 
 
-// =========================
-// CHECK URL
-// =========================
+// -------------------------------
+// Smooth screen change
+// -------------------------------
 
-const urlParams = new URLSearchParams(window.location.search);
+function showScreen(currentScreen, nextScreen) {
 
-const urlSender = urlParams.get("from");
-const urlReceiver = urlParams.get("to");
-const urlMessage = urlParams.get("message");
+    currentScreen.classList.remove("active");
 
-
-// =========================
-// IF B OPENS THE LINK
-// =========================
-
-if (urlReceiver) {
-
-    const receiver = urlReceiver;
-    const sender = urlSender || "";
-    const message = urlMessage || "Wishing you a beautiful and memorable day! ✨";
-
-
-    displayName.textContent = receiver;
-    birthdayName.textContent = receiver;
-    finalName.textContent = receiver;
-
-    displayMessage.textContent = message;
-
-
-    if (sender) {
-
-        displaySender.textContent = sender;
-        senderSection.style.display = "block";
-
-    } else {
-
-        senderSection.style.display = "none";
-
-    }
-
-
-    // Hide setup
-
-    setupScreen.style.display = "none";
-
-    // Show surprise
-
-    surpriseScreen.style.display = "block";
-
+    setTimeout(() => {
+        nextScreen.classList.add("active");
+    }, 350);
 }
 
 
-// =========================
-// CREATE SURPRISE
-// =========================
+// -------------------------------
+// Button click effect
+// -------------------------------
 
-createButton.addEventListener("click", function () {
+function buttonEffect(button) {
 
-    const sender = senderName.value.trim();
-    const receiver = receiverName.value.trim();
-    const message = customMessage.value.trim();
+    button.classList.remove("clicked");
 
+    // Restart animation every click
+    void button.offsetWidth;
 
-    // Check names
+    button.classList.add("clicked");
 
-    if (sender === "") {
-
-        senderName.focus();
-
-        senderName.style.borderColor = "#d99";
-
-        return;
-    }
+    createSparkles(button);
+}
 
 
-    if (receiver === "") {
+// -------------------------------
+// Small sparkle effect
+// -------------------------------
 
-        receiverName.focus();
+function createSparkles(button) {
 
-        receiverName.style.borderColor = "#d99";
+    const rect = button.getBoundingClientRect();
 
-        return;
-    }
+    for (let i = 0; i < 8; i++) {
 
+        const sparkle = document.createElement("span");
 
-    // Default message
+        sparkle.className = "click-sparkle";
 
-    const finalMessage =
-        message ||
-        "Wishing you a beautiful and memorable day! ✨";
+        sparkle.innerHTML = "✦";
 
+        sparkle.style.left =
+            rect.left + rect.width / 2 + "px";
 
-    // =========================
-    // CREATE URL
-    // =========================
+        sparkle.style.top =
+            rect.top + rect.height / 2 + "px";
 
-    const baseURL =
-        window.location.origin +
-        window.location.pathname;
-
-
-    const surpriseURL =
-        baseURL +
-        "?from=" + encodeURIComponent(sender) +
-        "&to=" + encodeURIComponent(receiver) +
-        "&message=" + encodeURIComponent(finalMessage);
-
-
-    // Put URL in box
-
-    generatedLink.value = surpriseURL;
-
-    linkBox.style.display = "block";
-
-
-    // Scroll to link
-
-    linkBox.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-
-});
-
-
-// =========================
-// COPY LINK
-// =========================
-
-copyButton.addEventListener("click", async function () {
-
-    try {
-
-        await navigator.clipboard.writeText(
-            generatedLink.value
+        sparkle.style.setProperty(
+            "--x",
+            `${(Math.random() - 0.5) * 140}px`
         );
 
-        copyButton.textContent = "Copied ✓";
+        sparkle.style.setProperty(
+            "--y",
+            `${(Math.random() - 0.5) * 100}px`
+        );
 
-        setTimeout(function () {
+        document.body.appendChild(sparkle);
 
-            copyButton.textContent = "Copy";
-
-        }, 2000);
-
-    } catch (error) {
-
-        generatedLink.select();
-        document.execCommand("copy");
-
-        copyButton.textContent = "Copied ✓";
-
-        setTimeout(function () {
-
-            copyButton.textContent = "Copy";
-
-        }, 2000);
-
+        setTimeout(() => {
+            sparkle.remove();
+        }, 900);
     }
+}
 
+
+// -------------------------------
+// First button
+// -------------------------------
+
+startBtn.addEventListener("click", () => {
+
+    buttonEffect(startBtn);
+
+    setTimeout(() => {
+        showScreen(welcomeScreen, messageScreen);
+    }, 300);
 });
 
 
-// =========================
-// OPEN SURPRISE
-// =========================
+// -------------------------------
+// Second button
+// -------------------------------
 
-openButton.addEventListener("click", function () {
+nextBtn.addEventListener("click", () => {
 
-    birthdaySection.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+    buttonEffect(nextBtn);
 
+    setTimeout(() => {
+        showScreen(messageScreen, finalScreen);
+    }, 300);
 });
 
 
-// =========================
-// FINAL SURPRISE
-// =========================
+// -------------------------------
+// Final celebration
+// -------------------------------
 
-continueButton.addEventListener("click", function () {
+celebrateBtn.addEventListener("click", () => {
 
-    finalSection.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+    buttonEffect(celebrateBtn);
 
+    celebrateBtn.innerHTML = "Happy Birthday! 🎉";
+
+    createCelebration();
 });
+
+
+// -------------------------------
+// Celebration particles
+// -------------------------------
+
+function createCelebration() {
+
+    const symbols = [
+        "✨",
+        "🎉",
+        "💫",
+        "⭐",
+        "🎈",
+        "💖"
+    ];
+
+    for (let i = 0; i < 35; i++) {
+
+        const particle = document.createElement("span");
+
+        particle.className = "celebration-particle";
+
+        particle.innerHTML =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        particle.style.left =
+            Math.random() * 100 + "vw";
+
+        particle.style.animationDelay =
+            Math.random() * 0.8 + "s";
+
+        particle.style.fontSize =
+            14 + Math.random() * 18 + "px";
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 3500);
+    }
+}
+```
