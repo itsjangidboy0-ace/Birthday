@@ -1,543 +1,581 @@
 ```css
-/* ================================
-   Birthday Surprise - CSS
-   ================================ */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+:root {
+    --bg: #0b0a0d;
+    --text: #f4f0eb;
+    --muted: #aaa3a7;
+    --soft: #d9b9c7;
+    --accent: #c58ca4;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
 }
 
 body {
-    min-height: 100vh;
     overflow: hidden;
-
-    font-family: "Segoe UI", Arial, sans-serif;
-
-    background:
-        radial-gradient(circle at 20% 20%, #35245c 0%, transparent 35%),
-        radial-gradient(circle at 80% 80%, #55213f 0%, transparent 35%),
-        linear-gradient(135deg, #100d20, #1b122b, #120d20);
-
-    color: white;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "DM Sans", sans-serif;
 }
 
 
-/* ================================
-   Background
-   ================================ */
+/* -------------------------
+   BACKGROUND
+------------------------- */
 
-.background {
+.ambient {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.11;
+    pointer-events: none;
+}
+
+.ambient-one {
+    background: #b56f91;
+    top: -300px;
+    right: -200px;
+}
+
+.ambient-two {
+    background: #8062a0;
+    bottom: -350px;
+    left: -250px;
+}
+
+.grain {
     position: fixed;
     inset: 0;
-
+    opacity: 0.035;
     pointer-events: none;
-    overflow: hidden;
-}
+    z-index: 20;
 
-.sparkle {
-    position: absolute;
-
-    width: 4px;
-    height: 4px;
-
-    border-radius: 50%;
-
-    background: white;
-
-    opacity: 0.7;
-
-    box-shadow:
-        0 0 8px white,
-        0 0 16px rgba(255, 255, 255, 0.5);
-
-    animation: floatingSparkle 5s infinite ease-in-out;
-}
-
-.sparkle:nth-child(1) {
-    top: 15%;
-    left: 15%;
-    animation-delay: 0s;
-}
-
-.sparkle:nth-child(2) {
-    top: 25%;
-    right: 18%;
-    animation-delay: 1s;
-}
-
-.sparkle:nth-child(3) {
-    top: 70%;
-    left: 12%;
-    animation-delay: 2s;
-}
-
-.sparkle:nth-child(4) {
-    bottom: 15%;
-    right: 15%;
-    animation-delay: 3s;
-}
-
-.sparkle:nth-child(5) {
-    top: 50%;
-    left: 50%;
-    animation-delay: 4s;
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
 
 
-@keyframes floatingSparkle {
+/* -------------------------
+   LAYOUT
+------------------------- */
 
-    0%,
-    100% {
-        transform: scale(0.6);
-        opacity: 0.2;
-    }
-
-    50% {
-        transform: scale(1.5);
-        opacity: 1;
-    }
-}
-
-
-/* ================================
-   Main Container
-   ================================ */
-
-.container {
-    position: relative;
-
+main {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    position: relative;
+}
+
+.page {
+    position: absolute;
+    inset: 0;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    padding: 20px;
-}
-
-
-/* ================================
-   Screens
-   ================================ */
-
-.screen {
-    position: absolute;
-
-    width: min(650px, 92%);
-
-    padding: 45px 35px;
+    padding: 30px;
 
     text-align: center;
 
-    border: 1px solid rgba(255, 255, 255, 0.12);
-
-    border-radius: 28px;
-
-    background: rgba(255, 255, 255, 0.07);
-
-    backdrop-filter: blur(18px);
-
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-
     opacity: 0;
+    visibility: hidden;
 
-    transform:
-        translateY(25px)
-        scale(0.97);
-
-    pointer-events: none;
+    transform: translateY(25px) scale(0.985);
 
     transition:
-        opacity 0.6s ease,
-        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 0.8s cubic-bezier(.22,1,.36,1),
+        transform 0.8s cubic-bezier(.22,1,.36,1),
+        visibility 0.8s;
 }
 
-.screen.active {
+.page.active {
     opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
-    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0) scale(1);
 }
 
 
-/* ================================
-   Text
-   ================================ */
+/* -------------------------
+   TYPOGRAPHY
+------------------------- */
 
-.small-text {
-    margin-bottom: 15px;
+.top-label {
+    position: absolute;
+    top: 55px;
 
-    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
-    letter-spacing: 2px;
+    color: #80797e;
 
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.top-label span {
+    width: 22px;
+    height: 1px;
+    background: #514b50;
+}
+
+.eyebrow {
+    margin-bottom: 20px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-
-    opacity: 0.65;
 }
-
 
 h1,
 h2 {
-    margin-bottom: 22px;
-
-    font-weight: 700;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ffffff,
-            #ffd9ee,
-            #ffffff
-        );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-
-    background-size: 200% auto;
-
-    animation: textShine 5s linear infinite;
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -2px;
 }
 
 h1 {
-    font-size: clamp(2.2rem, 7vw, 4rem);
+    font-size: clamp(65px, 11vw, 145px);
 }
 
 h2 {
-    font-size: clamp(2rem, 6vw, 3rem);
+    font-size: clamp(45px, 7vw, 85px);
+}
+
+h1 em,
+h2 em {
+    color: var(--soft);
+    font-style: italic;
+}
+
+.hero-text {
+    margin-top: 30px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+    line-height: 1.8;
 }
 
 
-@keyframes textShine {
+/* -------------------------
+   BUTTONS
+------------------------- */
 
-    to {
-        background-position: 200% center;
-    }
-}
-
-
-.intro,
-.final-message {
-    max-width: 520px;
-
-    margin: 12px auto;
-
-    line-height: 1.7;
-
-    font-size: 1.05rem;
-
-    color: rgba(255, 255, 255, 0.82);
-}
-
-.intro span {
-    color: #ffd1e8;
-
-    font-weight: 600;
-}
-
-
-/* ================================
-   Message Card
-   ================================ */
-
-.message-card {
-    margin: 25px auto;
-
-    padding: 25px;
-
-    max-width: 520px;
-
-    border-radius: 20px;
-
-    background: rgba(255, 255, 255, 0.06);
-
-    border: 1px solid rgba(255, 255, 255, 0.1);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-
-    line-height: 1.7;
-
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.message-card p {
-    margin: 12px 0;
-}
-
-
-/* ================================
-   Main Button
-   ================================ */
-
-.main-btn {
+.primary-btn {
     position: relative;
 
-    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    padding: 14px 28px;
+    width: 230px;
 
-    border: none;
+    margin-top: 38px;
+    padding: 15px 17px 15px 21px;
 
-    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 50px;
+
+    background: rgba(255,255,255,.055);
+    color: var(--text);
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    letter-spacing: .3px;
 
     cursor: pointer;
 
-    color: white;
-
-    font-size: 1rem;
-
-    font-weight: 600;
-
-    background:
-        linear-gradient(
-            135deg,
-            #d96b9b,
-            #9c5bd4
-        );
-
-    box-shadow:
-        0 8px 25px rgba(180, 85, 170, 0.35);
+    backdrop-filter: blur(15px);
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        filter 0.2s ease;
+        transform .35s cubic-bezier(.22,1,.36,1),
+        background .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
 
-    overflow: hidden;
+.primary-btn b {
+    width: 29px;
+    height: 29px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.1);
+
+    font-size: 15px;
+    font-weight: 400;
+
+    transition: transform .35s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,.09);
+    border-color: rgba(255,255,255,.3);
+    box-shadow: 0 15px 45px rgba(0,0,0,.3);
+}
+
+.primary-btn:hover b {
+    transform: translateX(4px);
+}
+
+.primary-btn:active {
+    transform: scale(.94);
+}
+
+.primary-btn.clicked {
+    animation: clickPulse .5s ease;
+}
+
+@keyframes clickPulse {
+    0% { transform: scale(1); }
+    40% { transform: scale(.92); }
+    70% { transform: scale(1.03); }
+    100% { transform: scale(1); }
 }
 
 
-/* Light sweep */
+/* -------------------------
+   SCROLL NOTE
+------------------------- */
 
-.main-btn::before {
-    content: "";
-
+.scroll-note {
     position: absolute;
+    bottom: 42px;
 
-    top: 0;
-    left: -100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
-    width: 60%;
-    height: 100%;
+    color: #656065;
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.35),
-            transparent
-        );
-
-    transform: skewX(-20deg);
-
-    transition: left 0.6s ease;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-.main-btn:hover::before {
-    left: 130%;
-}
-
-.main-btn:hover {
-    transform: translateY(-3px) scale(1.02);
-
-    box-shadow:
-        0 12px 35px rgba(190, 90, 180, 0.45);
-
-    filter: brightness(1.08);
-}
-
-.main-btn:active {
-    transform: scale(0.94);
+.scroll-note .line {
+    width: 35px;
+    height: 1px;
+    background: #464146;
 }
 
 
-/* JS click animation */
+/* -------------------------
+   MESSAGE
+------------------------- */
 
-.main-btn.clicked {
-    animation: buttonPop 0.45s ease;
+.number {
+    position: absolute;
+    top: 55px;
+    left: 55px;
+
+    color: #4f494e;
+
+    font-family: "Playfair Display", serif;
+    font-size: 14px;
+}
+
+.message-copy {
+    max-width: 530px;
+
+    margin-top: 38px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.message-copy p {
+    margin-bottom: 13px;
+}
+
+.message-copy .highlight {
+    margin-top: 25px;
+
+    color: var(--soft);
+
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.text-btn {
+    margin-top: 25px;
+
+    padding: 10px 0;
+
+    border: 0;
+    border-bottom: 1px solid #4b4549;
+
+    background: transparent;
+
+    color: #d9d2d6;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        color .3s ease,
+        border-color .3s ease,
+        transform .3s ease;
+}
+
+.text-btn b {
+    margin-left: 8px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.text-btn:hover {
+    color: white;
+    border-color: #b98da1;
+    transform: translateX(4px);
 }
 
 
-@keyframes buttonPop {
+/* -------------------------
+   FINAL
+------------------------- */
 
-    0% {
-        transform: scale(1);
+.final-symbol {
+    margin-bottom: 22px;
+
+    color: var(--soft);
+
+    font-size: 25px;
+
+    animation: breathe 2.8s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%,100% {
+        opacity: .45;
+        transform: scale(.9);
     }
 
-    45% {
-        transform: scale(0.92);
-    }
-
-    75% {
-        transform: scale(1.05);
-    }
-
-    100% {
-        transform: scale(1);
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
     }
 }
 
+.final-copy {
+    margin-top: 28px;
 
-/* ================================
-   Click Sparkles
-   ================================ */
+    color: var(--muted);
 
-.click-sparkle {
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.wish-message {
+    margin-top: 20px;
+
+    color: var(--soft);
+
+    font-family: "Playfair Display", serif;
+    font-size: 16px;
+    font-style: italic;
+
+    opacity: 0;
+    transform: translateY(8px);
+
+    transition:
+        opacity .6s ease,
+        transform .6s ease;
+}
+
+.wish-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* -------------------------
+   PROGRESS
+------------------------- */
+
+.progress {
+    position: fixed;
+
+    right: 35px;
+    top: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 7px;
+
+    transform: translateY(-50%);
+
+    z-index: 30;
+}
+
+.progress-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #494349;
+
+    transition:
+        transform .4s ease,
+        background .4s ease;
+}
+
+.progress-dot.active {
+    transform: scale(1.7);
+    background: #d5b4c2;
+}
+
+.progress-line {
+    width: 1px;
+    height: 20px;
+
+    background: #383338;
+}
+
+
+/* -------------------------
+   SPARKLES
+------------------------- */
+
+.spark {
     position: fixed;
 
     pointer-events: none;
+    z-index: 100;
 
-    font-size: 14px;
+    color: #ead4dd;
+    font-size: 13px;
 
-    color: white;
-
-    z-index: 9999;
-
-    animation:
-        sparkleBurst 0.9s ease-out forwards;
+    animation: spark .9s ease-out forwards;
 }
 
-
-@keyframes sparkleBurst {
-
+@keyframes spark {
     0% {
         opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scale(0.5);
+        transform: translate(-50%,-50%) scale(.4);
     }
 
     100% {
         opacity: 0;
-
         transform:
             translate(
                 calc(-50% + var(--x)),
                 calc(-50% + var(--y))
             )
-            scale(1.4);
+            rotate(90deg)
+            scale(1.2);
     }
 }
 
 
-/* ================================
-   Birthday Icon
-   ================================ */
+/* -------------------------
+   FINAL CELEBRATION
+------------------------- */
 
-.birthday-icon {
-    font-size: 5rem;
-
-    margin-bottom: 15px;
-
-    animation:
-        cakeFloat 3s ease-in-out infinite;
-}
-
-
-@keyframes cakeFloat {
-
-    0%,
-    100% {
-        transform: translateY(0) rotate(-2deg);
-    }
-
-    50% {
-        transform: translateY(-10px) rotate(2deg);
-    }
-}
-
-
-/* ================================
-   Celebration
-   ================================ */
-
-.celebration-particle {
+.celebration {
     position: fixed;
 
-    top: -40px;
-
     pointer-events: none;
+    z-index: 100;
 
-    z-index: 9999;
-
-    animation:
-        fallDown 3.2s linear forwards;
+    animation: celebrationFall 3s ease-out forwards;
 }
 
-
-@keyframes fallDown {
-
+@keyframes celebrationFall {
     0% {
-        transform:
-            translateY(0)
-            rotate(0deg);
+        opacity: 0;
+        transform: translateY(-20px) scale(.6);
+    }
 
+    15% {
         opacity: 1;
     }
 
     100% {
-        transform:
-            translateY(110vh)
-            rotate(720deg);
-
         opacity: 0;
+        transform:
+            translateY(100vh)
+            rotate(300deg);
     }
 }
 
 
-/* ================================
-   Mobile
-   ================================ */
+/* -------------------------
+   MOBILE
+------------------------- */
 
 @media (max-width: 600px) {
 
-    .screen {
-        padding: 35px 22px;
+    .top-label {
+        top: 30px;
+        letter-spacing: 2px;
+        font-size: 7px;
+    }
 
-        border-radius: 22px;
+    .top-label span {
+        width: 12px;
+    }
+
+    .page {
+        padding: 25px;
     }
 
     h1 {
-        font-size: 2.3rem;
+        font-size: clamp(58px, 18vw, 90px);
     }
 
     h2 {
-        font-size: 2rem;
+        font-size: clamp(42px, 12vw, 65px);
     }
 
-    .intro,
-    .final-message {
-        font-size: 0.95rem;
+    .hero-text {
+        font-size: 13px;
     }
 
-    .message-card {
-        padding: 18px;
+    .message-copy {
+        font-size: 13px;
     }
 
-    .main-btn {
-        padding: 13px 23px;
-
-        font-size: 0.95rem;
+    .number {
+        top: 32px;
+        left: 25px;
     }
 
-    .birthday-icon {
-        font-size: 4rem;
+    .progress {
+        right: 15px;
+    }
+
+    .scroll-note {
+        bottom: 25px;
     }
 }
 ```
