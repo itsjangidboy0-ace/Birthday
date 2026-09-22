@@ -1,42 +1,51 @@
 ```javascript
-// ================================
-// Birthday Surprise - JavaScript
-// ================================
+const pages = [
+    document.getElementById("hero"),
+    document.getElementById("message"),
+    document.getElementById("final")
+];
 
-const welcomeScreen = document.getElementById("welcomeScreen");
-const messageScreen = document.getElementById("messageScreen");
-const finalScreen = document.getElementById("finalScreen");
-
-const startBtn = document.getElementById("startBtn");
-const nextBtn = document.getElementById("nextBtn");
+const openBtn = document.getElementById("openBtn");
+const continueBtn = document.getElementById("continueBtn");
 const celebrateBtn = document.getElementById("celebrateBtn");
 
-const celebrationArea = document.getElementById("celebrationArea");
+const wishMessage = document.getElementById("wishMessage");
+
+const dots = document.querySelectorAll(".progress-dot");
+
+let currentPage = 0;
 
 
-// -------------------------------
-// Smooth screen change
-// -------------------------------
+// -------------------------
+// Change page
+// -------------------------
 
-function showScreen(currentScreen, nextScreen) {
+function goToPage(index) {
 
-    currentScreen.classList.remove("active");
+    if (index < 0 || index >= pages.length) return;
+
+    pages[currentPage].classList.remove("active");
+
+    currentPage = index;
 
     setTimeout(() => {
-        nextScreen.classList.add("active");
-    }, 350);
+        pages[currentPage].classList.add("active");
+    }, 120);
+
+    dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentPage);
+    });
 }
 
 
-// -------------------------------
-// Button click effect
-// -------------------------------
+// -------------------------
+// Button feedback
+// -------------------------
 
-function buttonEffect(button) {
+function buttonFeedback(button) {
 
     button.classList.remove("clicked");
 
-    // Restart animation every click
     void button.offsetWidth;
 
     button.classList.add("clicked");
@@ -45,127 +54,126 @@ function buttonEffect(button) {
 }
 
 
-// -------------------------------
-// Small sparkle effect
-// -------------------------------
+// -------------------------
+// Sparkles around button
+// -------------------------
 
 function createSparkles(button) {
 
     const rect = button.getBoundingClientRect();
 
-    for (let i = 0; i < 8; i++) {
+    const symbols = ["✦", "·", "✧"];
 
-        const sparkle = document.createElement("span");
+    for (let i = 0; i < 7; i++) {
 
-        sparkle.className = "click-sparkle";
+        const spark = document.createElement("span");
 
-        sparkle.innerHTML = "✦";
+        spark.className = "spark";
 
-        sparkle.style.left =
+        spark.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        spark.style.left =
             rect.left + rect.width / 2 + "px";
 
-        sparkle.style.top =
+        spark.style.top =
             rect.top + rect.height / 2 + "px";
 
-        sparkle.style.setProperty(
+        spark.style.setProperty(
             "--x",
-            `${(Math.random() - 0.5) * 140}px`
+            `${(Math.random() - .5) * 130}px`
         );
 
-        sparkle.style.setProperty(
+        spark.style.setProperty(
             "--y",
-            `${(Math.random() - 0.5) * 100}px`
+            `${(Math.random() - .5) * 90}px`
         );
 
-        document.body.appendChild(sparkle);
+        document.body.appendChild(spark);
 
         setTimeout(() => {
-            sparkle.remove();
+            spark.remove();
         }, 900);
     }
 }
 
 
-// -------------------------------
-// First button
-// -------------------------------
+// -------------------------
+// Open surprise
+// -------------------------
 
-startBtn.addEventListener("click", () => {
+openBtn.addEventListener("click", () => {
 
-    buttonEffect(startBtn);
+    buttonFeedback(openBtn);
 
     setTimeout(() => {
-        showScreen(welcomeScreen, messageScreen);
-    }, 300);
+        goToPage(1);
+    }, 280);
 });
 
 
-// -------------------------------
-// Second button
-// -------------------------------
+// -------------------------
+// Continue
+// -------------------------
 
-nextBtn.addEventListener("click", () => {
+continueBtn.addEventListener("click", () => {
 
-    buttonEffect(nextBtn);
+    buttonFeedback(continueBtn);
 
     setTimeout(() => {
-        showScreen(messageScreen, finalScreen);
-    }, 300);
+        goToPage(2);
+    }, 280);
 });
 
 
-// -------------------------------
-// Final celebration
-// -------------------------------
+// -------------------------
+// Make a wish
+// -------------------------
 
 celebrateBtn.addEventListener("click", () => {
 
-    buttonEffect(celebrateBtn);
+    buttonFeedback(celebrateBtn);
 
-    celebrateBtn.innerHTML = "Happy Birthday! 🎉";
+    wishMessage.classList.add("show");
 
-    createCelebration();
+    celebrate();
 });
 
 
-// -------------------------------
-// Celebration particles
-// -------------------------------
+// -------------------------
+// Final celebration
+// -------------------------
 
-function createCelebration() {
+function celebrate() {
 
-    const symbols = [
-        "✨",
-        "🎉",
-        "💫",
-        "⭐",
-        "🎈",
-        "💖"
-    ];
+    const symbols = ["✦", "✧", "·", "✦"];
 
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 24; i++) {
 
-        const particle = document.createElement("span");
+        const item = document.createElement("span");
 
-        particle.className = "celebration-particle";
+        item.className = "celebration";
 
-        particle.innerHTML =
+        item.textContent =
             symbols[Math.floor(Math.random() * symbols.length)];
 
-        particle.style.left =
+        item.style.left =
             Math.random() * 100 + "vw";
 
-        particle.style.animationDelay =
-            Math.random() * 0.8 + "s";
+        item.style.top =
+            "-20px";
 
-        particle.style.fontSize =
-            14 + Math.random() * 18 + "px";
+        item.style.fontSize =
+            10 + Math.random() * 18 + "px";
 
-        document.body.appendChild(particle);
+        item.style.animationDelay =
+            Math.random() * .8 + "s";
+
+        document.body.appendChild(item);
 
         setTimeout(() => {
-            particle.remove();
+            item.remove();
         }, 3500);
     }
-}
+});
 ```
