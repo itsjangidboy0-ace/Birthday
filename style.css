@@ -4,18 +4,31 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
     background: #0b0b12;
     color: white;
+}
+
+
+/* =========================
+   SETUP SCREEN
+========================= */
+
+.setup-screen {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    padding: 30px 20px;
 }
 
-.container {
+.setup-content {
     width: 100%;
     max-width: 600px;
     padding: 40px;
@@ -24,29 +37,56 @@ body {
     border-radius: 24px;
     backdrop-filter: blur(15px);
     box-shadow: 0 0 40px rgba(150, 100, 255, 0.15);
-    text-align: center;
+}
+
+.eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #aaa;
+    margin-bottom: 18px;
+    text-transform: uppercase;
 }
 
 h1 {
-    font-size: 38px;
-    margin-bottom: 15px;
+    font-size: 42px;
+    line-height: 1.1;
+    margin-bottom: 18px;
 }
 
 h2 {
-    margin: 25px 0 15px;
+    font-size: 36px;
+    line-height: 1.2;
+    margin-bottom: 20px;
 }
 
-p {
+.intro-text,
+.opening-text,
+.final-text {
     color: #cfcfd8;
     line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.input-group {
     margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #d8d8df;
 }
 
 input,
 textarea {
     width: 100%;
     padding: 15px;
-    margin: 10px 0;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.06);
@@ -60,10 +100,20 @@ textarea {
     resize: vertical;
 }
 
+input:focus,
+textarea:focus {
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
 input::placeholder,
 textarea::placeholder {
     color: #888894;
 }
+
+
+/* =========================
+   BUTTONS
+========================= */
 
 button {
     padding: 14px 24px;
@@ -83,12 +133,25 @@ button:hover {
     box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
 }
 
+button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   LINK BOX
+========================= */
+
 .link-box {
     display: none;
     margin-top: 25px;
     padding: 20px;
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.04);
+}
+
+.link-title {
+    margin-bottom: 15px;
 }
 
 .link-row {
@@ -105,11 +168,98 @@ button:hover {
     margin-top: 0;
 }
 
-#surpriseScreen {
-    width: 100%;
+.link-info {
+    margin-top: 12px;
+    margin-bottom: 0;
+    font-size: 13px;
 }
 
-#birthdaySection,
-#finalSection {
-    margin-top: 30px;
+
+/* =========================
+   SURPRISE SCREEN
+========================= */
+
+.surprise-screen {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.opening-section,
+.birthday-section,
+.final-section {
+    min-height: 100vh;
+    max-width: 750px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.message-card {
+    width: 100%;
+    max-width: 650px;
+    padding: 35px;
+    margin: 20px 0;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.message-card p {
+    color: #e5e5eb;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+.sender {
+    margin-top: 25px;
+    color: #aaa;
+}
+
+.continue-button {
+    margin-top: 20px;
+}
+
+.final-line {
+    width: 80px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.4);
+    margin: 25px 0;
+}
+
+.made-with {
+    color: #aaa;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .setup-content {
+        padding: 28px 20px;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    .link-row {
+        flex-direction: column;
+    }
+
+    #copyButton {
+        width: 100%;
+    }
 }
