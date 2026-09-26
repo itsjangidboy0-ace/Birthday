@@ -14,7 +14,7 @@
 <body>
 
     <!-- =========================
-         SETUP SCREEN - A
+         SETUP SCREEN
     ========================== -->
 
     <div class="setup-screen" id="setupScreen">
@@ -33,9 +33,6 @@
                 to someone you care about.
             </p>
 
-
-            <!-- SENDER -->
-
             <div class="input-group">
 
                 <label for="senderName">
@@ -52,8 +49,6 @@
             </div>
 
 
-            <!-- RECEIVER -->
-
             <div class="input-group">
 
                 <label for="receiverName">
@@ -69,8 +64,6 @@
 
             </div>
 
-
-            <!-- MESSAGE -->
 
             <div class="input-group">
 
@@ -92,8 +85,6 @@
                 <span>✦</span>
             </button>
 
-
-            <!-- GENERATED LINK -->
 
             <div class="link-box" id="linkBox">
 
@@ -127,15 +118,25 @@
 
 
     <!-- =========================
-         SURPRISE SCREEN - B
+         SURPRISE SCREEN
     ========================== -->
 
     <div class="surprise-screen" id="surpriseScreen">
 
-        <!-- BACKGROUND GLOWS -->
-
         <div class="background-glow glow-one"></div>
         <div class="background-glow glow-two"></div>
+
+        <!-- Subtle floating particles -->
+        <div class="particles" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
 
         <!-- =========================
@@ -144,23 +145,27 @@
 
         <section class="opening-section" id="openingSection">
 
-            <p class="eyebrow">
+            <p class="eyebrow reveal-item">
                 THIS IS FOR YOU
             </p>
 
-            <h1>
+            <h1 class="reveal-item">
                 Hey,
                 <span id="displayName">there</span>.
             </h1>
 
-            <p class="opening-text">
+            <p class="opening-text reveal-item">
                 Someone made a little something for you.
             </p>
 
-            <button id="openButton">
+            <button id="openButton" class="reveal-item">
                 Open your surprise
                 <span>→</span>
             </button>
+
+            <div class="scroll-hint">
+                <span></span>
+            </div>
 
         </section>
 
@@ -181,6 +186,10 @@
             </h2>
 
             <div class="message-card">
+
+                <div class="card-glow"></div>
+
+                <div class="message-icon">✦</div>
 
                 <p id="displayMessage">
                     Your message will appear here.
@@ -236,10 +245,9 @@
     </div>
 
 
-    <!-- JAVASCRIPT -->
-
     <script src="script.js"></script>
 
 </body>
 
 </html>
+```
