@@ -14,14 +14,16 @@
 <body>
 
     <!-- =========================
-         SETUP SCREEN
+         SETUP SCREEN - A
     ========================== -->
 
     <div class="setup-screen" id="setupScreen">
 
         <div class="setup-content">
 
-            <p class="eyebrow">MAKE A LITTLE SURPRISE</p>
+            <p class="eyebrow">
+                MAKE A LITTLE SURPRISE
+            </p>
 
             <h1>
                 Make someone's<br>
@@ -32,6 +34,9 @@
                 Create a beautiful surprise and send the link
                 to someone you care about.
             </p>
+
+
+            <!-- YOUR NAME -->
 
             <div class="input-group">
 
@@ -49,6 +54,8 @@
             </div>
 
 
+            <!-- THEIR NAME -->
+
             <div class="input-group">
 
                 <label for="receiverName">
@@ -65,6 +72,8 @@
             </div>
 
 
+            <!-- MESSAGE -->
+
             <div class="input-group">
 
                 <label for="customMessage">
@@ -80,11 +89,15 @@
             </div>
 
 
+            <!-- CREATE BUTTON -->
+
             <button id="createButton">
                 Create the surprise
                 <span>✦</span>
             </button>
 
+
+            <!-- GENERATED LINK -->
 
             <div class="link-box" id="linkBox">
 
@@ -117,26 +130,17 @@
     </div>
 
 
+
     <!-- =========================
-         SURPRISE SCREEN
+         SURPRISE SCREEN - B
     ========================== -->
 
     <div class="surprise-screen" id="surpriseScreen">
 
+        <!-- BACKGROUND GLOWS -->
+
         <div class="background-glow glow-one"></div>
         <div class="background-glow glow-two"></div>
-
-        <!-- Subtle floating particles -->
-        <div class="particles" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
 
 
         <!-- =========================
@@ -145,29 +149,26 @@
 
         <section class="opening-section" id="openingSection">
 
-            <p class="eyebrow reveal-item">
+            <p class="eyebrow">
                 THIS IS FOR YOU
             </p>
 
-            <h1 class="reveal-item">
+            <h1>
                 Hey,
                 <span id="displayName">there</span>.
             </h1>
 
-            <p class="opening-text reveal-item">
+            <p class="opening-text">
                 Someone made a little something for you.
             </p>
 
-            <button id="openButton" class="reveal-item">
+            <button id="openButton">
                 Open your surprise
                 <span>→</span>
             </button>
 
-            <div class="scroll-hint">
-                <span></span>
-            </div>
-
         </section>
+
 
 
         <!-- =========================
@@ -185,11 +186,13 @@
                 <span id="birthdayName">you</span>.
             </h2>
 
+            <!--
+                YAHAN WAHI MESSAGE DIKHEGA
+                JO SETUP SCREEN MEIN
+                "MESSAGE FOR THEM" MEIN LIKHA HOGA.
+            -->
+
             <div class="message-card">
-
-                <div class="card-glow"></div>
-
-                <div class="message-icon">✦</div>
 
                 <p id="displayMessage">
                     Your message will appear here.
@@ -213,6 +216,7 @@
         </section>
 
 
+
         <!-- =========================
              FINAL
         ========================== -->
@@ -224,12 +228,11 @@
             </p>
 
             <h2>
-                Happy Birthday! 🎂✨
+                Just for you. ✨
             </h2>
 
             <p class="final-text">
-                I hope your day is filled with happiness,
-                beautiful moments, and plenty of reasons to smile.
+                Hope this little surprise made you smile.
             </p>
 
             <div class="final-line"></div>
@@ -245,9 +248,28 @@
     </div>
 
 
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
     <script src="script.js"></script>
 
 </body>
 
 </html>
 ```
+
+**Flow exactly ye rahega:**
+
+`Your name` → tumhara naam
+`Their name` → uska naam
+`Message for them` → **tumhara khud ka message** 💌
+
+Phir receiver ki website par:
+
+**For [uska naam].**
+↓
+**[tumhara likha hua message]**
+
+Bas `script.js` ko bhi wahi wala rakho jo tumne originally bheja tha—usmein message system already sahi hai.
